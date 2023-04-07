@@ -10,9 +10,9 @@ services:
       - db
   db:
     image: mongo:latest
-    hostname: test_mongodb
+    hostname: mongodb_oep
     environment:
-      - MONGO_INITDB_DATABASE=animal_db
+      - MONGO_INITDB_DATABASE=oep_db
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=pass
     volumes:

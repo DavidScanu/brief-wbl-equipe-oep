@@ -1,20 +1,17 @@
-db = db.getSiblingDB("animal_db");
-db.animal_tb.drop();
+db = db.getSiblingDB("oep_db");
+db.products_tb.drop();
 
-db.animal_tb.insertMany([
+db.products_tb.insertMany([
     {
         "id": 1,
-        "name": "Lion",
-        "type": "wild"
+        "name": "Product 1"
     },
     {
         "id": 2,
-        "name": "Cow",
-        "type": "domestic"
+        "name": "Product 2"
     },
     {
         "id": 3,
-        "name": "Tiger",
-        "type": "wild"
+        "name": "Product 3"
     },
 ]);
