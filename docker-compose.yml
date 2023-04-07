@@ -5,7 +5,7 @@ services:
     ports:
       - "667:5000"
     volumes:
-      - .:/app
+      - ./src:/app
     links:
       - db
   db:
