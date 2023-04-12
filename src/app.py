@@ -9,9 +9,14 @@ def get_db():
                          port=27017, 
                          username='root', 
                          password='pass',
-                        authSource="admin")
+                         authSource="admin")
     db = client["oep_db"]
     return db
+
+# DB
+db = get_db()
+# Collection : products
+products_collection = db.products_tb
 
 @app.route('/')
 def ping_server():
@@ -20,18 +25,16 @@ def ping_server():
 # Get all products
 @app.route('/oep/products')
 def get_products():
-    db = get_db()
-    products_all = db.products_tb.find()
-    products_dict = [{"id": product["id"], "name": product["name"]} for product in products_all]
+    products_all = products_collection.find()
+    products_dict = [{"name": product["name"]} for product in products_all]
     return jsonify({"products": products_dict})
 
 # Get product
-@app.route('/oep/product/<int:product_id>')
-def get_product(product_id):
-    db = get_db()
-    product = db.products_tb.find_one({"id": product_id})
-    product_dict = {"id": product["id"], "name": product["name"]}
-    return jsonify({"product": product_dict})
+# @app.route('/oep/product/<int:product_id>')
+# def get_product(product_id):
+#     product = products_collection.find_one({"id": product_id})
+#     product_dict = {"name": product["name"]}
+#     return jsonify({"product": product_dict})
 
 if __name__=='__main__':
     app.run(host="0.0.0.0", port=5000)
